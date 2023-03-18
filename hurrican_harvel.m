@@ -118,3 +118,14 @@ metrics.DataSetMetrics
 % view label metrics
 metrics.ClassMetrics
 
+%% Make prediction
+imgDir = fullfile("D:\FDLData_new\",'predict_image');
+imdsPred = = imageDatastore(imgDir);  % 读取原始图像
+
+pxdsResults = semanticseg(imdsPred,net, ...
+    'MiniBatchSize',1, ...
+    'WriteLocation',"D:\FDLData_new\pred_masks", ...
+    'Verbose',false,...
+    'ExecutionEnvironment','gpu');
+
+

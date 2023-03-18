@@ -1,5 +1,5 @@
 function [imdsTrain, imdsVal, imdsTest, pxdsTrain, pxdsVal, pxdsTest] = partitionData(imds,pxds, ratio)
-% Partition CamVid data by randomly selecting 60% of the data for training. The
+% Partition CamVid data by randomly selecting ratio of the data for training. The
 % rest is used for testing.
     
 % Set initial random state for example reproducibility.
@@ -7,11 +7,11 @@ rng(0);
 numFiles = numel(imds.Files);
 shuffledIndices = randperm(numFiles);
 
-% Use 60% of the images for training.
+% Use ratio(1) of the images for training.
 numTrain = round(ratio(1) * numFiles);
 trainingIdx = shuffledIndices(1:numTrain);
 
-% Use 20% of the images for validation
+% Use ratio(2) of the images for validation
 numVal = round(ratio(2)  * numFiles);
 valIdx = shuffledIndices(numTrain+1:numTrain+numVal);
 
